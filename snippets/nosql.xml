@@ -1,0 +1,15 @@
+<Resources>
+	<Resource id="myDatasource" type="DataSource">
+		JdbcDriver org.hsqldb.jdbcDriver
+		JdbcUrl jdbc:hsqldb:mem:hsqldb
+		UserName sa
+		Password
+	</Resource>
+	
+	<Resource id="mongo" 
+		  class-name="com.lordofthejars.tomee.jpa.MongoProvider">
+		address localhost
+		port 27017
+	</Resource>
+	
+</Resources>

@@ -1,0 +1,392 @@
+
+= Tomcat y Java EE con *TomEE* {y mucho más}
+Alex Soto <http://github.com/lordofthejars[@alexsotob]>
+v1.0.0, Aug 1, 2013
+:copyright: CC BY-SA 2.0
+:website: http://asciidoctor.org
+:twitter: @alexsotob
+include::attributes.conf[]
+
+
+[.topic.intro]
+== Qué es *Apache TomEE*
+
+[.topic]
+== _Tomcat_ + _Java EE_ = *TomEE*
+
+
+[.incremental.middle.pull-right]
+* Pronunciado "Tommy"
+* Certificado Java EE 6 Web Profile
+* Usando componentes Apache
+
+== !
+
+[.count]
+_1_
+
+Ser *Pequeño*
+
+== !
+
+[.count]
+_2_
+
+Estar *Certificado*
+
+== !
+
+[.count]
+_3_
+
+Ser *Tomcat*
+
+[.topic.intro]
+== Qué es *Web Profile*
+
+[.topic]
+== Web Profile
+
+[.scatter.middle]
+* Introducido en Java EE 6
+* Mitad de especificaciones
+* Libre de sistemas heredados
+* *Pero* sin algunas especificaciones *útiles*
+
+
+== !
+
+[.middle.stretch-x]
+image::tomee.png[]
+
+[.topic.intro]
+== Qué es estar *Certificado*
+
+== !
+
+_Meses y meses de trabajo_
+
+== !
+
+_Miles de tests_
+
+[.follow-up]
+*TCK* y propios *Arquillian*
+
+== !
+
+_Amazon EC2_
+
+[.follow-up]
+&#181;linux con la memória por defecto _jvm_
+
+
+[.topic.intro]
+== Demo
+
+[.topic.intro]
+== Construyendo *TomEE*
+
+== !
+
+/conf
+
+[.follow-up.file]
++system.properties+
+
+[.follow-up.file]
++tomee.xml+
+
+== !
+
+/bin
+
+[.follow-up.file]
++TomEE.*.exe+
+
+[.follow-up.file]
++TomEE.*.bat+
+
+[.follow-up.file]
++tomee.sh+
+
+== !
+
+/endorsed
+
+[.follow-up.file]
++annotatoion-api.jar+
+
+[.follow-up.file]
++jaxb-api.jar+
+
+[.follow-up.file]
++jaxb-impl.jar+
+
+== !
+
+/lib
+
+[.follow-up.file]
++apache-components*.*+
+
+[.topic.source]
+== server.xml
+
+[source, xml]
+----
+include::snippets/server.xml[]
+----
+
+[.topic.source]
+== catalina.sh
+
+[source, shell]
+----
+include::snippets/catalina.sh[]
+----
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Es super ligero
+[float]
+=== 27MB Zip, 64MB memory
+--
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Es un _Tomcat_
+[float]
+=== Eclipse, Netbeans, Intellij, YourKit, JRebel, NewRelic
+--
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Certificado
+[float]
+=== Portabilidad Java EE 6 Web Profile
+--
+
+[.topic.intro]
+== Peligros de Hacerlo Nosotros
+
+== !
+
+*Lento* al Arrancar
+
+[.follow-up]
+Auto-Escaneo de *anotaciones*
+
+== !
+
+*Duplicidad* de Classes
+
+[.follow-up]
+Repetitividad en memoria
+
+== !
+
+Partes *incompletas* en _Tomcat_
+
+[.follow-up]
+Transacciones en EntityManagers, OpenWebBeans, JNDI global
+
+== !
+
+Partes *incompletas* en _Tomcat_
+
+[.follow-up]
+Sólo tendremos el *60%* de la especificación
+
+== !
+
+Tests
+
+[.follow-up]
+Integración *testeada* por 1000s de tests
+
+== !
+
+Seguridad integrada
+
+[.follow-up]
+*Tomcat Realms* integrado en _EJB_, _JAX-WS_, $$...$$
+
+== !
+
+Portabilidad
+
+[.follow-up]
+No vas a tener
+
+[.topic.recap]
+== Resumen
+
+[.hgroup]
+--
+[float]
+== Gasta *tú* tiempo escribiendo aplicaciones
+[float]
+=== $$...$$ y no servidores de aplicaciones 
+--
+
+[.topic.intro]
+== Herramientas
+
+== !
+
+Arquillian
+
+[.follow-up]
+Manda los *tests* y *&#181;deployment* dentro del _contenedor_
+
+[.topic.intro]
+== Demo
+
+== !
+
+Maven
+
+[.follow-up]
+Arrancar y Configurar *TomEE*, Desplegar *aplicaciones*
+
+[.topic.source]
+== pom.xml
+
+[source, xml]
+----
+include::snippets/pom.xml[]
+----
+
+[.topic.recap]
+== Resumen
+
+[.hgroup]
+--
+[float]
+== *TomEE* + *Arquillian* = _Felicidad_ 
+--
+
+[.topic.intro]
+== Validaciones
+
+[.topic.source]
+== OverworkedBean.java
+
+[source, java]
+----
+include::snippets/OverworkedBean.java[]
+----
+
+[.topic.source]
+== Salida
+
+[source, shell]
+----
+include::snippets/output.sh[]
+----
+
+[.topic.intro]
+== Configuración
+
+[.topic.source]
+== tomee.xml
+
+[source, xml]
+----
+include::snippets/tomee.xml[]
+----
+
+[.topic.source]
+== $$...$$ muy breve
+
+[source, xml]
+----
+include::snippets/brief-tomee.xml[]
+----
+
+== !
+
+Poner la configuración dentro de la *webapp*
+
+[.follow-up]
+META-INF/resources.xml (excepto _Transacciones_)
+
+[.topic.source]
+== conf/system.properties
+
+[source, properties]
+----
+include::snippets/system.properties[]
+----
+
+[.topic.source]
+== y como propiedad Java
+
+[source, terminal]
+----
+include::snippets/javaOpts.sh[]
+----
+
+== ! 
+
+Extender la Configuración en *TomEE*
+
+[.topic.source]
+== resources.xml
+
+[source, xml]
+----
+include::snippets/nosql.xml[]
+----
+
+[.topic.source]
+== BookDao.java
+
+[source, java]
+----
+include::snippets/BookDao.java[]
+----
+
+== !
+
+[, Lukasz Budnik]
+____
+I decided to get rid of Spring from my project and to use Apache TomEE Plus (TomEE with additional OpenEJB and CXF jars) to manage my rest service. ….
+
+And this time no Spring configuration at all! TomEE and JavaEE 6 rock! There is also one point to note. TomEE is insanely fast!
+____
+
+== Tomitribe
+
+[.corner]
+image::tomitribe_logo.png[Tomitribe]
+
+[.graffiti]
+*TomEE* + _Business_ = *Tomitribe*
+
+== !
+
+[{caption-off}, crole="band"]
+.https://github.com/lordofthejars/
+image::github.jpg[]
+
+[.topic.ending, hrole="name"]
+== Thanks!
+
+[.footer]
+
+{author} {twitter} 
+

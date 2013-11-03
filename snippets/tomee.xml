@@ -1,0 +1,15 @@
+<tomee>
+
+<Resource id="movieDatabase" type="DataSource">
+          JdbcDriver com.mysql.jdbc.Driver
+          JdbcUrl jdbc:mysql://localhost:3306/moviefun
+          UserName username
+          Password password
+          JtaManaged true
+</Resource>
+
+<TransactionManager id="myTransactionManager">
+	     DefaultTransactionTimeOut = 10 minutes
+</TransactionManager>
+
+</tomee>
