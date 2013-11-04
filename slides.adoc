@@ -20,12 +20,25 @@ include::attributes.conf[]
 * Certificado Java EE 6 Web Profile
 * Usando componentes Apache
 
+[NOTE.speaker]
+====
+* "Tomcat -> Glassfish, JBoss, queremos evitar esto"
+* "TomEE = Tomcat + Java EE"
+* "unzip Tomcat - Componentes Apache (OpenJPA, OpenWebBeans, ...) - zip"
+====
+
 == !
 
 [.count]
 _1_
 
 Ser *Pequeño*
+
+[NOTE.speaker]
+====
+* "No queremos distribuibles grandes"
+* "JBoss 127MB, Glassfish 100MB"
+====
 
 == !
 
@@ -34,12 +47,23 @@ _2_
 
 Estar *Certificado*
 
+[NOTE.speaker]
+====
+* "certificado lo que vas a utilizar en tú app"
+* "movernos a otros servidores"
+====
+
 == !
 
 [.count]
 _3_
 
 Ser *Tomcat*
+
+[NOTE.speaker]
+====
+* "punto crítico"
+====
 
 [.topic.intro]
 == Qué es *Web Profile*
@@ -53,11 +77,24 @@ Ser *Tomcat*
 * Libre de sistemas heredados
 * *Pero* sin algunas especificaciones *útiles*
 
+[NOTE.speaker]
+====
+* "Java EE muy grande, en Java EE 6, la especificación fue partida"
+* "24+ -> 12+ Web Profile las mínimas especificaciones para una app"
+* "Sin CMP, Corba, Jax-rpc (Full Profile)"
+* "Pero también sin Jax-rs, jax-ws, jms"
+====
 
 == !
 
 [.middle.stretch-x]
 image::tomee.png[]
+
+[NOTE.speaker]
+====
+* "3 TomEEs (Web Profile + Java mail), JaxRS (merge), TomEE+ (muy por encima de WebProfile pero no Full)"
+* "Cambiará para la Java EE 7
+====
 
 [.topic.intro]
 == Qué es estar *Certificado*
@@ -73,13 +110,24 @@ _Miles de tests_
 [.follow-up]
 *TCK* y propios *Arquillian*
 
+[NOTE.speaker]
+====
+* "1 semana de tests lineales (miles de tests)"
+* "tests de regresion con arquillian"
+====
+
 == !
 
 _Amazon EC2_
 
 [.follow-up]
-&#181;linux con la memória por defecto _jvm_
+&#181;instances en linux con la memória por defecto _jvm_
 
+[NOTE.speaker]
+====
+* "64MB heap (el resto para nosotros), tests partidos en JMS"
+* "2 horas"
+====
 
 [.topic.intro]
 == Demo
@@ -97,6 +145,11 @@ _Amazon EC2_
 [.follow-up.file]
 +tomee.xml+
 
+[NOTE.speaker]
+====
+* "tenemos que configurar más cosas (JMS Queue, Stateless Container, ...)"
+====
+
 == !
 
 /bin
@@ -109,6 +162,11 @@ _Amazon EC2_
 
 [.follow-up.file]
 +tomee.sh+
+
+[NOTE.speaker]
+====
+* "Ficheros para arrancar TomEE"
+====
 
 == !
 
@@ -123,12 +181,22 @@ _Amazon EC2_
 [.follow-up.file]
 +jaxb-impl.jar+
 
+[NOTE.speaker]
+====
+* "jvm lleva unos pero no la versión correcta de la spec Java EE"
+====
+
 == !
 
 /lib
 
 [.follow-up.file]
 +apache-components*.*+
+
+[NOTE.speaker]
+====
+* "Java EE libraries
+====
 
 [.topic.source]
 == server.xml
@@ -138,6 +206,11 @@ _Amazon EC2_
 include::snippets/server.xml[]
 ----
 
+[NOTE.speaker]
+====
+* "Transforma el Tomcat a TomEE"
+====
+
 [.topic.source]
 == catalina.sh
 
@@ -145,6 +218,11 @@ include::snippets/server.xml[]
 ----
 include::snippets/catalina.sh[]
 ----
+
+[NOTE.speaker]
+====
+* "OpenJPA Eclipse Link runtime par asuportar JPA"
+====
 
 [.topic.recap]
 == Resultado
