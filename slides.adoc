@@ -3,7 +3,7 @@
 Alex Soto <http://github.com/lordofthejars[@alexsotob]>
 v1.0.0, Aug 1, 2013
 :copyright: CC BY-SA 2.0
-:website: http://asciidoctor.org
+:website: http://tomee.apache.org
 :twitter: @alexsotob
 include::attributes.conf[]
 
@@ -121,7 +121,7 @@ _Miles de tests_
 _Amazon EC2_
 
 [.follow-up]
-&#181;instances en linux con la memória por defecto _jvm_
+&#181;instancias en linux con la memória por defecto _jvm_
 
 [NOTE.speaker]
 ====
@@ -173,7 +173,7 @@ _Amazon EC2_
 /endorsed
 
 [.follow-up.file]
-+annotatoion-api.jar+
++annotation-api.jar+
 
 [.follow-up.file]
 +jaxb-api.jar+
@@ -267,12 +267,22 @@ include::snippets/catalina.sh[]
 [.follow-up]
 Auto-Escaneo de *anotaciones*
 
+[NOTE.speaker]
+====
+* "CDI escanea classes, MyFaces escanea clases de web y CDI, JPA más, ..."
+====
+
 == !
 
-*Duplicidad* de Classes
+*Duplicidad* de Clases
 
 [.follow-up]
 Repetitividad en memoria
+
+[NOTE.speaker]
+====
+* "Cada webapp tiene a memória los mismos jars"
+====
 
 == !
 
@@ -281,12 +291,12 @@ Partes *incompletas* en _Tomcat_
 [.follow-up]
 Transacciones en EntityManagers, OpenWebBeans, JNDI global
 
-== !
-
-Partes *incompletas* en _Tomcat_
-
-[.follow-up]
-Sólo tendremos el *60%* de la especificación
+[NOTE.speaker]
+====
+* "No hay Tx"
+* "No hay JNDI global"
+* "60% de la especificación"
+====
 
 == !
 
@@ -328,7 +338,7 @@ No vas a tener
 Arquillian
 
 [.follow-up]
-Manda los *tests* y *&#181;deployment* dentro del _contenedor_
+Manda los *tests* y *&#181;despliegue* dentro del _contenedor_
 
 [.topic.intro]
 == Demo
@@ -347,6 +357,11 @@ Arrancar y Configurar *TomEE*, Desplegar *aplicaciones*
 ----
 include::snippets/pom.xml[]
 ----
+
+[NOTE.speaker]
+====
+* "ANexus/ArtiF descarga, arranca TomEE and Woot"
+====
 
 [.topic.recap]
 == Resumen
@@ -368,6 +383,12 @@ include::snippets/pom.xml[]
 include::snippets/OverworkedBean.java[]
 ----
 
+[NOTE.speaker]
+====
+* "Problem - Fix - Deploy - Problem, TomEE los coje todos"
+* "Plataforma para aprender (no es necesario leerse toda la doc buscando el problema)"
+====
+
 [.topic.source]
 == Salida
 
@@ -375,6 +396,11 @@ include::snippets/OverworkedBean.java[]
 ----
 include::snippets/output.sh[]
 ----
+
+[NOTE.speaker]
+====
+* "Estilo como un compilador"
+====
 
 [.topic.intro]
 == Configuración
@@ -387,6 +413,13 @@ include::snippets/output.sh[]
 include::snippets/tomee.xml[]
 ----
 
+[NOTE.speaker]
+====
+* "No creemos en ficheros XML muy largos. Pensar en cerrar tags, y difícil merge"
+* "Buenos para las máquinas malos por las personas (flat view es mejor)"
+* "Tiempo legible"
+====
+
 [.topic.source]
 == $$...$$ muy breve
 
@@ -395,12 +428,22 @@ include::snippets/tomee.xml[]
 include::snippets/brief-tomee.xml[]
 ----
 
+[NOTE.speaker]
+====
+* "Viene con valores por defecto para empezar a trabajar"
+====
+
 == !
 
 Poner la configuración dentro de la *webapp*
 
 [.follow-up]
 META-INF/resources.xml (excepto _Transacciones_)
+
+[NOTE.speaker]
+====
+* "Útil en test (Arquillian), Tx no porqué son globales"
+====
 
 [.topic.source]
 == conf/system.properties
@@ -409,6 +452,11 @@ META-INF/resources.xml (excepto _Transacciones_)
 ----
 include::snippets/system.properties[]
 ----
+
+[NOTE.speaker]
+====
+* "Si no te gustan los XML hay el equivalente"
+====
 
 [.topic.source]
 == y como propiedad Java
@@ -421,6 +469,12 @@ include::snippets/javaOpts.sh[]
 == ! 
 
 Extender la Configuración en *TomEE*
+
+[NOTE.speaker]
+====
+* "Podemos definir recursos propios com en *Spring*"
+* "No solo los recursos definidos como JMS, DS, "
+====
 
 [.topic.source]
 == resources.xml
