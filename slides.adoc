@@ -121,7 +121,7 @@ _Miles de tests_
 _Amazon EC2_
 
 [.follow-up]
-&#181;instancias en linux con la memória por defecto _jvm_
+&#181;instancias en linux con la memoria por defecto _jvm_
 
 [NOTE.speaker]
 ====
@@ -230,9 +230,9 @@ include::snippets/catalina.sh[]
 [.hgroup]
 --
 [float]
-== Es super ligero
+== Es muy ligero
 [float]
-=== 27MB Zip, 64MB memory
+=== 27MB Zip, 64MB memoria
 --
 
 [.topic.recap]
@@ -325,7 +325,7 @@ No vas a tener
 [.hgroup]
 --
 [float]
-== Gasta *tú* tiempo escribiendo aplicaciones
+== Gasta *tu* tiempo escribiendo aplicaciones
 [float]
 === $$...$$ y no servidores de aplicaciones 
 --
