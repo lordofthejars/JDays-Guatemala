@@ -1,0 +1,7 @@
+<Server port="" shutdown="SHUTDOWN">
+
+<!-- ... -->
+	<Listener className="org.apache.tomee.catalina.ServerListener" />
+<!-- ... -->
+
+</Server>

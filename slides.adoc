@@ -1,0 +1,524 @@
+
+= Tomcat y Java EE con *TomEE* {y mucho más}
+Alex Soto <http://github.com/lordofthejars[@alexsotob]>
+v1.0.0, Aug 1, 2013
+:copyright: CC BY-SA 2.0
+:website: http://tomee.apache.org
+:twitter: @alexsotob
+include::attributes.conf[]
+
+
+[.topic.intro]
+== Qué es *Apache TomEE*
+
+[.topic]
+== _Tomcat_ + _Java EE_ = *TomEE*
+
+
+[.incremental.middle.pull-right]
+* Pronunciado "Tommy"
+* Certificado Java EE 6 Web Profile
+* Usando componentes Apache
+
+[NOTE.speaker]
+====
+* "Tomcat -> Glassfish, JBoss, queremos evitar esto"
+* "TomEE = Tomcat + Java EE"
+* "unzip Tomcat - Componentes Apache (OpenJPA, OpenWebBeans, ...) - zip"
+====
+
+== !
+
+[.count]
+_1_
+
+Ser *Pequeño*
+
+[NOTE.speaker]
+====
+* "No queremos distribuibles grandes"
+* "JBoss 127MB, Glassfish 100MB"
+====
+
+== !
+
+[.count]
+_2_
+
+Estar *Certificado*
+
+[NOTE.speaker]
+====
+* "certificado lo que vas a utilizar en tú app"
+* "movernos a otros servidores"
+====
+
+== !
+
+[.count]
+_3_
+
+Ser *Tomcat*
+
+[NOTE.speaker]
+====
+* "punto crítico"
+====
+
+[.topic.intro]
+== Qué es *Web Profile*
+
+[.topic]
+== Web Profile
+
+[.scatter.middle]
+* Introducido en Java EE 6
+* Mitad de especificaciones
+* Libre de sistemas heredados
+* *Pero* sin algunas especificaciones *útiles*
+
+[NOTE.speaker]
+====
+* "Java EE muy grande, en Java EE 6, la especificación fue partida"
+* "24+ -> 12+ Web Profile las mínimas especificaciones para una app"
+* "Sin CMP, Corba, Jax-rpc (Full Profile)"
+* "Pero también sin Jax-rs, jax-ws, jms"
+====
+
+== !
+
+[.middle.stretch-x]
+image::tomee.png[]
+
+[NOTE.speaker]
+====
+* "3 TomEEs (Web Profile + Java mail), JaxRS (merge), TomEE+ (muy por encima de WebProfile pero no Full)"
+* "Cambiará para la Java EE 7
+====
+
+[.topic.intro]
+== Qué es estar *Certificado*
+
+== !
+
+_Meses y meses de trabajo_
+
+== !
+
+_Miles de tests_
+
+[.follow-up]
+*TCK* y propios *Arquillian*
+
+[NOTE.speaker]
+====
+* "1 semana de tests lineales (miles de tests)"
+* "tests de regresion con arquillian"
+====
+
+== !
+
+_Amazon EC2_
+
+[.follow-up]
+&#181;instancias en linux con la memoria por defecto _jvm_
+
+[NOTE.speaker]
+====
+* "64MB heap (el resto para nosotros), tests partidos en JMS"
+* "2 horas"
+====
+
+[.topic.intro]
+== Demo
+
+[.topic.intro]
+== Construyendo *TomEE*
+
+== !
+
+/conf
+
+[.follow-up.file]
++system.properties+
+
+[.follow-up.file]
++tomee.xml+
+
+[NOTE.speaker]
+====
+* "tenemos que configurar más cosas (JMS Queue, Stateless Container, ...)"
+====
+
+== !
+
+/bin
+
+[.follow-up.file]
++TomEE.*.exe+
+
+[.follow-up.file]
++TomEE.*.bat+
+
+[.follow-up.file]
++tomee.sh+
+
+[NOTE.speaker]
+====
+* "Ficheros para arrancar TomEE"
+====
+
+== !
+
+/endorsed
+
+[.follow-up.file]
++annotation-api.jar+
+
+[.follow-up.file]
++jaxb-api.jar+
+
+[.follow-up.file]
++jaxb-impl.jar+
+
+[NOTE.speaker]
+====
+* "jvm lleva unos pero no la versión correcta de la spec Java EE"
+====
+
+== !
+
+/lib
+
+[.follow-up.file]
++apache-components*.*+
+
+[NOTE.speaker]
+====
+* "Java EE libraries
+====
+
+[.topic.source]
+== server.xml
+
+[source, xml]
+----
+include::snippets/server.xml[]
+----
+
+[NOTE.speaker]
+====
+* "Transforma el Tomcat a TomEE"
+====
+
+[.topic.source]
+== catalina.sh
+
+[source, shell]
+----
+include::snippets/catalina.sh[]
+----
+
+[NOTE.speaker]
+====
+* "OpenJPA Eclipse Link runtime par asuportar JPA"
+====
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Es muy ligero
+[float]
+=== 27MB Zip, 64MB memoria
+--
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Es un _Tomcat_
+[float]
+=== Eclipse, Netbeans, Intellij, YourKit, JRebel, NewRelic
+--
+
+[.topic.recap]
+== Resultado
+
+[.hgroup]
+--
+[float]
+== Certificado
+[float]
+=== Portabilidad Java EE 6 Web Profile
+--
+
+[.topic.intro]
+== Peligros de Hacerlo Nosotros
+
+== !
+
+*Lento* al Arrancar
+
+[.follow-up]
+Auto-Escaneo de *anotaciones*
+
+[NOTE.speaker]
+====
+* "CDI escanea classes, MyFaces escanea clases de web y CDI, JPA más, ..."
+====
+
+== !
+
+*Duplicidad* de Clases
+
+[.follow-up]
+Repetitividad en memoria
+
+[NOTE.speaker]
+====
+* "Cada webapp tiene a memória los mismos jars"
+====
+
+== !
+
+Partes *incompletas* en _Tomcat_
+
+[.follow-up]
+Transacciones en EntityManagers, OpenWebBeans, JNDI global
+
+[NOTE.speaker]
+====
+* "No hay Tx"
+* "No hay JNDI global"
+* "60% de la especificación"
+====
+
+== !
+
+Tests
+
+[.follow-up]
+Integración *testeada* por 1000s de tests
+
+== !
+
+Seguridad integrada
+
+[.follow-up]
+*Tomcat Realms* integrado en _EJB_, _JAX-WS_, $$...$$
+
+== !
+
+Portabilidad
+
+[.follow-up]
+No vas a tener
+
+[.topic.recap]
+== Resumen
+
+[.hgroup]
+--
+[float]
+== Gasta *tu* tiempo escribiendo aplicaciones
+[float]
+=== $$...$$ y no servidores de aplicaciones 
+--
+
+[.topic.intro]
+== Herramientas
+
+== !
+
+Arquillian
+
+[.follow-up]
+Manda los *tests* y *&#181;despliegue* dentro del _contenedor_
+
+[.topic.intro]
+== Demo
+
+== !
+
+Maven
+
+[.follow-up]
+Arrancar y Configurar *TomEE*, Desplegar *aplicaciones*
+
+[.topic.source]
+== pom.xml
+
+[source, xml]
+----
+include::snippets/pom.xml[]
+----
+
+[NOTE.speaker]
+====
+* "ANexus/ArtiF descarga, arranca TomEE and Woot"
+====
+
+[.topic.recap]
+== Resumen
+
+[.hgroup]
+--
+[float]
+== *TomEE* + *Arquillian* = _Felicidad_ 
+--
+
+[.topic.intro]
+== Validaciones
+
+[.topic.source]
+== OverworkedBean.java
+
+[source, java]
+----
+include::snippets/OverworkedBean.java[]
+----
+
+[NOTE.speaker]
+====
+* "Problem - Fix - Deploy - Problem, TomEE los coje todos"
+* "Plataforma para aprender (no es necesario leerse toda la doc buscando el problema)"
+====
+
+[.topic.source]
+== Salida
+
+[source, shell]
+----
+include::snippets/output.sh[]
+----
+
+[NOTE.speaker]
+====
+* "Estilo como un compilador"
+====
+
+[.topic.intro]
+== Configuración
+
+[.topic.source]
+== tomee.xml
+
+[source, xml]
+----
+include::snippets/tomee.xml[]
+----
+
+[NOTE.speaker]
+====
+* "No creemos en ficheros XML muy largos. Pensar en cerrar tags, y difícil merge"
+* "Buenos para las máquinas malos por las personas (flat view es mejor)"
+* "Tiempo legible"
+====
+
+[.topic.source]
+== $$...$$ muy breve
+
+[source, xml]
+----
+include::snippets/brief-tomee.xml[]
+----
+
+[NOTE.speaker]
+====
+* "Viene con valores por defecto para empezar a trabajar"
+====
+
+== !
+
+Poner la configuración dentro de la *webapp*
+
+[.follow-up]
+META-INF/resources.xml (excepto _Transacciones_)
+
+[NOTE.speaker]
+====
+* "Útil en test (Arquillian), Tx no porqué son globales"
+====
+
+[.topic.source]
+== conf/system.properties
+
+[source, properties]
+----
+include::snippets/system.properties[]
+----
+
+[NOTE.speaker]
+====
+* "Si no te gustan los XML hay el equivalente"
+====
+
+[.topic.source]
+== y como propiedad Java
+
+[source, terminal]
+----
+include::snippets/javaOpts.sh[]
+----
+
+== ! 
+
+Extender la Configuración en *TomEE*
+
+[NOTE.speaker]
+====
+* "Podemos definir recursos propios com en *Spring*"
+* "No solo los recursos definidos como JMS, DS, "
+====
+
+[.topic.source]
+== resources.xml
+
+[source, xml]
+----
+include::snippets/nosql.xml[]
+----
+
+[.topic.source]
+== BookDao.java
+
+[source, java]
+----
+include::snippets/BookDao.java[]
+----
+
+== !
+
+[, Lukasz Budnik]
+____
+I decided to get rid of Spring from my project and to use Apache TomEE Plus (TomEE with additional OpenEJB and CXF jars) to manage my rest service. ….
+
+And this time no Spring configuration at all! TomEE and JavaEE 6 rock! There is also one point to note. TomEE is insanely fast!
+____
+
+== Tomitribe
+
+[.corner]
+image::tomitribe_logo.png[Tomitribe]
+
+[.graffiti]
+*TomEE* + _Business_ = *Tomitribe*
+
+== !
+
+[{caption-off}, crole="band"]
+.https://github.com/lordofthejars/
+image::github.jpg[]
+
+[.topic.ending, hrole="name"]
+== Thanks!
+
+[.footer]
+
+{author} {twitter} 
+
