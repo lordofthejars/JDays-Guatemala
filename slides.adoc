@@ -512,7 +512,7 @@ image::tomitribe_logo.png[Tomitribe]
 == !
 
 [{caption-off}, crole="band"]
-.https://github.com/lordofthejars/
+.+++<p style="background-color:black;color:white;font-size:50px" width="100%">https://www.github.com/lordofthejars/</p>+++
 image::github.jpg[]
 
 [.topic.ending, hrole="name"]

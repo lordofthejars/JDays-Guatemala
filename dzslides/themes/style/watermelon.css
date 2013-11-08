@@ -422,15 +422,69 @@ blockquote cite:before {
   content: '\2014 \00A0';
 }
 
-figcaption {
-  font-size: 3em;
-  color: #FFFFFF;
-  font-weight: 700;
-  text-align: center;
-  position: absolute;
-  top: 50px;
+
+figure > a,
+figure > a > img {
+  top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+}
+
+figure > img.elevate {
+  top: -5%;
+}
+
+figure > img.fit {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+figure > img.relax-y {
+  height: auto;
+  top: auto;
+  margin: auto 0;
+}
+
+figure > img.relax-x {
+  width: auto;
+}
+
+figcaption {
+  font-size: 3em;
+  /*color: #000000;*/
+  color: #611427;
+  font-weight: 700;
+  text-align: right;
+  position: absolute;
+  bottom: .4em;
+  right: .6em;
+  width: 100%;
+}
+
+figcaption.left {
+  right: 0;
+  left: .6em;
+  text-align: left;
+}
+
+figcaption.invert {
+  color: #FFFFFF;
+  text-shadow: 2px 2px #000000;
+}
+
+figcaption.band {
+  /*color: #611427;*/
+  right: 0;
+  text-align: left;
+  background-color: rgba(255, 255, 255, .75);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  padding-left: .5em;
+  line-height: 1.5em;
+  padding-bottom: .05em;
+  bottom: 1em;
 }
 
 section.title footer {
