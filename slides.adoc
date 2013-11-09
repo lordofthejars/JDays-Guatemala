@@ -1,7 +1,7 @@
 
 = Tomcat y Java EE con *TomEE* {y mucho más}
-Alex Soto <http://github.com/lordofthejars[@alexsotob]>
-v1.0.0, Aug 1, 2013
+Alex Soto <@alexsotob>; David Blevis <@dblevins>
+v1.0.0, Nov 9, 2013
 :copyright: CC BY-SA 2.0
 :website: http://tomee.apache.org
 :twitter: @alexsotob
